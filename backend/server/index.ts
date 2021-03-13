@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from "express";
 import fileUpload from "express-fileupload";
+import morgan from "morgan";
 import { LabelsController } from "./controllers";
 
 const PORT = 5000;
@@ -21,5 +22,6 @@ export function serverStart() {
 function serverConfig() {
   app.use(urlencoded({ extended: true }));
   app.use(json());
+  app.use(morgan("dev"));
   app.use(fileUpload());
 }
