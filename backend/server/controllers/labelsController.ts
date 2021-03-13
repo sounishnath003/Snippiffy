@@ -11,15 +11,13 @@ import {
 const router = Router();
 
 // * [GET]: getting all labels
-router.get("/", async (req, res, next) => {
+router.get("/", async (req, res) => {
   if (!existsSync(baseDirectory)) {
     mkdirSync(baseDirectory, { recursive: true });
   }
   return res
     .status(OK)
     .send({ labels: readdirSync(baseDirectory, { encoding: "utf8" }) });
-
-  next();
 });
 
 // * [GET]: getting a specific label through body
