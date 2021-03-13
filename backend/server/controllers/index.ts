@@ -1,6 +1,4 @@
-import LabelsController from './labelsController';
+import LabelsController from "./labelsController";
+import SnippetsController from "./snippetsController";
 
-
-export {
-    LabelsController
-};
+export { LabelsController, SnippetsController };
