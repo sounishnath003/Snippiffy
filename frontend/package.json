@@ -18,10 +18,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "yarn remove:config && craco start",
-    "build": "yarn remove:config && craco build",
+    "start": "craco start",
+    "build": "craco build",
     "test": "craco test",
-    "remove:config": "rm tsconfig.json",
+    "remove:config": "del tsconfig.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
