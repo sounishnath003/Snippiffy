@@ -1,13 +1,12 @@
 import { Router } from "express";
 import {
-  existsSync,
-  mkdirSync,
-  readFile,
-  writeFile,
-  writeFileSync,
-  unlink,
+    existsSync,
+    mkdirSync,
+    readFile, unlink, writeFile,
+    writeFileSync
 } from "fs";
 import { baseDirectory, FORBIDDEN, OK } from "../utility";
+import { checkIfFileAttached } from "../utility/checkIfFileAttached";
 
 const router = Router();
 
@@ -56,7 +55,7 @@ router.post("/create", async (req, res) => {
 });
 
 // * [POST] Write codes in SnippetFile (SAVE)
-router.post("/save", async (req, res, next) => {
+router.post("/save", checkIfFileAttached, async (req, res, next) => {
   const { snippet }: any = req.files;
   const { label } = req.body;
 
