@@ -39,7 +39,7 @@ router.get("/:name", async (req, res, next) => {
 });
 
 // * [POST]: Create a new label
-router.post("/create", async (req, res, next) => {
+router.post("/create", async (req, res) => {
   const { label } = req.body;
   const location = `${baseDirectory}/${label}`;
   if (existsSync(location)) {
@@ -48,19 +48,17 @@ router.post("/create", async (req, res, next) => {
       .send({ success: false, message: `Label already exists!!` });
   }
 
-  mkdir(location, (err) => {
+  return mkdir(location, { recursive: true }, (err) => {
     if (err) {
       return res
         .status(INTERNAL_ERROR)
         .send({ success: false, message: `Label could not be created!!` });
     }
 
-    res
+    return res
       .status(OK)
       .send({ success: true, message: `Label ${label} has been created` });
   });
-
-  next();
 });
 
 // * [DELETE]: Delete a Label from snippets
