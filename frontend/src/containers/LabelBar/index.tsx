@@ -1,19 +1,22 @@
 import React from "react";
 import { AddIcon } from "../../assets/icons";
 import { Modal } from "../../components";
-
-let states = [
-  { id: 1, label: "TypeScript" },
-  { id: 2, label: "JavaScript" },
-  { id: 3, label: "Go Lang" },
-];
+import { GlobalContext } from "../../Context/GlobalContextState";
 
 const LabelBar: React.FC = () => {
   const [searchText, setSearchText] = React.useState<string>("");
   const [openModal, setOpenModal] = React.useState<boolean>(false);
 
-  function addNewLabelFunc(payload: string) {
-    states = [...states, { id: Math.random() * 10, label: payload }];
+  const { labels } = React.useContext(GlobalContext);
+
+  async function addNewLabelFunc(data: string) {
+    const payload = { label: data };
+    const rawResp = await fetch("/labels/create", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+    const resp = await rawResp.json();
+    console.log({ resp });
   }
 
   return (
@@ -33,12 +36,12 @@ const LabelBar: React.FC = () => {
             </div>
           </div>
 
-          {states
-            .filter((label) => label.label.toLowerCase().includes(searchText))
-            .map((state) => (
+          {labels
+            .filter((label) => label.toLowerCase().includes(searchText))
+            .map((label) => (
               <div className=" my-3 text-sm text-gray-500 normal-case">
                 <div className="h-6 cursor-pointer my-2">
-                  <div className="hover:text-gray-400">{state.label} </div>
+                  <div className="hover:text-gray-400">{label} </div>
                 </div>
               </div>
             ))}

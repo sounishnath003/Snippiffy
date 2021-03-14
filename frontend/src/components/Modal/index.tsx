@@ -1,5 +1,6 @@
 import React from "react";
 import { InfoIcon } from "../../assets/icons";
+import { GlobalContext } from "../../Context/GlobalContextState";
 import "./styles.css";
 
 interface IProps {
@@ -11,6 +12,8 @@ interface IProps {
 
 function Modal({ title, closeBind, saveBind, type }: IProps) {
   const [newLabel, setnewLabel] = React.useState<string>("");
+  const [selectLang, setSelectlang] = React.useState<string>("");
+  const { languages } = React.useContext(GlobalContext);
 
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -68,13 +71,17 @@ function Modal({ title, closeBind, saveBind, type }: IProps) {
                       <div>
                         {" "}
                         <select
-                          placeholder="choose language"
+                          name="chooseLanguages"
                           className="w-full"
+                          value={selectLang}
+                          onChange={(e) => setSelectlang(e.target.value)}
                         >
-                          <option value="1">Javascript</option>
-                          <option value="1">Typescript</option>
-                          <option value="1">Angular</option>
-                          <option value="1">Vue</option>
+                          {Object.keys(languages).map((lang) => (
+                            <option key={lang} value={lang}>
+                              {" "}
+                              {lang}{" "}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
