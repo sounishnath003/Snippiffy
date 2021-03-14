@@ -6,7 +6,7 @@ function Header(): JSX.Element {
   return (
     <React.Fragment>
       <nav className="p-1 bg-gray-50 border-b">
-        <div className="text-xl cursor-pointer px-2 text-blue-800 tracking-wide">
+        <div className="text-xl cursor-pointer px-2 text-blue-800 font-semibold tracking-wide">
           Snipiffy
         </div>
       </nav>

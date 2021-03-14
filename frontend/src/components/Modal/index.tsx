@@ -5,10 +5,11 @@ import "./styles.css";
 interface IProps {
   title: string;
   closeBind: React.Dispatch<React.SetStateAction<boolean>>;
+  type: boolean;
   saveBind: (data: string) => void;
 }
 
-function Modal({ title, closeBind, saveBind }: IProps) {
+function Modal({ title, closeBind, saveBind, type }: IProps) {
   const [newLabel, setnewLabel] = React.useState<string>("");
 
   return (
@@ -55,9 +56,30 @@ function Modal({ title, closeBind, saveBind }: IProps) {
                     value={newLabel}
                     onChange={(e) => setnewLabel(e.target.value)}
                     type="text"
-                    className="w-full px-3 focus:ring-2 rounded-lg focus:ring-blue-400 bg-gray-50 py-2 outline-none"
+                    placeholder="Please provide input"
+                    required
+                    className="w-full border px-3 focus:ring-2 rounded-lg focus:ring-blue-400 bg-gray-50 py-2 outline-none"
                   />
                 </div>
+                {type && (
+                  <div className="my-2">
+                    <div className="flex space-x-2 text-sm">
+                      <div className="font-bold">Language: </div>
+                      <div>
+                        {" "}
+                        <select
+                          placeholder="choose language"
+                          className="w-full"
+                        >
+                          <option value="1">Javascript</option>
+                          <option value="1">Typescript</option>
+                          <option value="1">Angular</option>
+                          <option value="1">Vue</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ const LabelBar: React.FC = () => {
   return (
     <React.Fragment>
       <aside
-        className="uppercase p-3  inline-flex min-h-screen tracking-wide w-52"
+        className="uppercase p-3 inline-flex min-h-screen tracking-wide overflow-y-auto"
         style={{ backgroundColor: `#07223a`, color: `#fff` }}
       >
         <div className="w-full">
@@ -43,13 +43,13 @@ const LabelBar: React.FC = () => {
               </div>
             ))}
 
-          <div className="bottom-0 absolute -ml-1 mb-2">
+          <div className="-relative -ml-1 mb-2">
             <input
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value.toLowerCase())}
               placeholder="search for labels..."
-              className="px-4 py-1 w-full text-sm outline-none rounded bg-gray-700 opacity-70 overflow-hidden"
+              className="px-4 py-1 w-full relative text-sm outline-none rounded bg-gray-700 opacity-70 overflow-hidden"
             />
           </div>
         </div>
@@ -58,6 +58,7 @@ const LabelBar: React.FC = () => {
       {openModal && (
         <Modal
           title={"Add a label"}
+          type={false}
           closeBind={setOpenModal}
           saveBind={addNewLabelFunc}
         />

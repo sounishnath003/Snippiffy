@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
-import { Header } from "./components";
-import { LabelBar } from "./containers";
+import { GridView, Header } from "./components";
+import { LabelBar, SnippetBar } from "./containers";
+
 
 function App() {
   return (
     <>
       <Header />
-      <LabelBar />
+      <GridView>
+        <LabelBar />
+        <SnippetBar />
+      </GridView>
     </>
   );
 }
