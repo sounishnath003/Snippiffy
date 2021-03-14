@@ -1,9 +1,11 @@
 import { Router } from "express";
 import {
-    existsSync,
-    mkdirSync,
-    readFile, unlink, writeFile,
-    writeFileSync
+  existsSync,
+  mkdirSync,
+  readFile,
+  unlink,
+  writeFile,
+  writeFileSync,
 } from "fs";
 import { baseDirectory, FORBIDDEN, OK } from "../utility";
 import { checkIfFileAttached } from "../utility/checkIfFileAttached";
