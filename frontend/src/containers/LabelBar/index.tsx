@@ -42,8 +42,8 @@ const FolderBar: React.FC = () => {
 
           {labels
             .filter((label) => label.toLowerCase().includes(searchText))
-            .map((label) => (
-              <div className=" my-3 text-sm text-gray-500 normal-case">
+            .map((label, index) => (
+              <div key={index} className=" my-3 text-sm text-gray-500 normal-case">
                 <div className="h-6 cursor-pointer my-2">
                   <div className="hover:text-gray-400">{label} </div>
                 </div>

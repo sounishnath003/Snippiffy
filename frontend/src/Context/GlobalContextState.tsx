@@ -1,5 +1,5 @@
 import React from "react";
-import { LOAD_ALL_LABEL } from "../actions";
+import { LOAD_ALL_LABEL, SET_ERROR, SET_LOADING } from "../actions";
 import { globalStateReducer, IAction } from "../Reducer/globalStateReducer";
 
 type mapp = {
@@ -18,6 +18,7 @@ type mapp = {
 export interface IGlobalContextState {
   labels: string[];
   files: string[];
+  loading: boolean;
   snippet: string;
   error: string;
   dispatch: React.Dispatch<IAction>;
@@ -26,6 +27,7 @@ export interface IGlobalContextState {
 }
 
 export const initialState: IGlobalContextState = {
+  loading: false,
   labels: [],
   files: [],
   snippet: "",
@@ -52,13 +54,18 @@ export function GlobalContextProvider({ children }: any) {
   const [state, dispatch] = React.useReducer(globalStateReducer, initialState);
 
   React.useEffect(() => {
-    const mk = async function() {
-      const rawResp = await fetch('/labels');
-      const data = await rawResp.json();
-      dispatch({type: LOAD_ALL_LABEL, payload: {data}})
-    }
+    const mk = async function () {
+      try {
+        dispatch({ type: SET_LOADING, payload: {} });
+        const rawResp = await fetch("/labels");
+        const data = await rawResp.json();
+        dispatch({ type: LOAD_ALL_LABEL, payload: { data } });
+      } catch (error) {
+        dispatch({ type: SET_ERROR, payload: { error } });
+      }
+    };
     mk();
-  }, [])
+  }, []);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>

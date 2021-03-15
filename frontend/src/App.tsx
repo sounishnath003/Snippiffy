@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
-import { GridView, Header } from "./components";
+import { AlertBox, GridView, Header } from "./components";
 import { FolderBar, SnippetBar } from "./containers";
 import { GlobalContextProvider } from "./Context/GlobalContextState";
 
 function App() {
   return (
     <>
+      <AlertBox/>
       <Header />
       <GlobalContextProvider>
         <GridView>

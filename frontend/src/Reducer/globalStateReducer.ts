@@ -1,4 +1,10 @@
-import { ADD_NEW_LABEL, LOAD_ALL_LABEL } from "../actions";
+import {
+  ADD_NEW_LABEL,
+  DISMISS_ERROR,
+  LOAD_ALL_LABEL,
+  SET_ERROR,
+  SET_LOADING,
+} from "../actions";
 import {
   IGlobalContextState,
   initialState,
@@ -14,9 +20,28 @@ export function globalStateReducer(
   action: IAction
 ): IGlobalContextState {
   switch (action.type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+
+    case DISMISS_ERROR:
+      return {
+        ...state,
+        error: "",
+      };
+
     case LOAD_ALL_LABEL:
       return {
         ...state,
+        loading: false,
+        success: action.payload.data.message,
         labels: [...action.payload.data.labels],
       };
 
