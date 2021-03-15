@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 
 // * [GET]: getting a specific label through body
 router.get("/:name", async (req, res, next) => {
-  const { name } = req.body;
+  const { name } = req.params;  
   const location: string = `${baseDirectory}/${name}`;
 
   if (existsSync(location)) {

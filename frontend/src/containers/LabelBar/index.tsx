@@ -1,27 +1,18 @@
 import React from "react";
-import { ADD_NEW_LABEL } from "../../actions";
 import { AddIcon } from "../../assets/icons";
 import { Modal } from "../../components";
-import { GlobalContext } from "../../Context/GlobalContextState";
+import { useFolderBarHook } from "./hooks";
 
 const FolderBar: React.FC = () => {
-  const [searchText, setSearchText] = React.useState<string>("");
-  const [openModal, setOpenModal] = React.useState<boolean>(false);
-
-  const { labels, dispatch} = React.useContext(GlobalContext);
-  
-
-  async function addNewLabelFunc(data: string) {
-    const rawResp = await fetch("/labels/create", {
-      method: "POST",
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({label: data}),
-    });
-    const resp = await rawResp.json();
-    if (resp.success) {
-      dispatch({type: ADD_NEW_LABEL, payload: data})
-    }
-  }
+  const {
+    addNewLabelFunc,
+    labels,
+    onLabelSelected,
+    openModal,
+    searchText,
+    setOpenModal,
+    setSearchText,
+  } = useFolderBarHook();
 
   return (
     <React.Fragment>
@@ -32,7 +23,7 @@ const FolderBar: React.FC = () => {
         <div className="w-full">
           <div className="flex justify-between border-b border-gray-600">
             <div>
-              <span className="text-sm ">Labels</span>
+              <span className="text-sm ">Folders</span>
             </div>
 
             <div onClick={() => setOpenModal(true)}>
@@ -43,8 +34,14 @@ const FolderBar: React.FC = () => {
           {labels
             .filter((label) => label.toLowerCase().includes(searchText))
             .map((label, index) => (
-              <div key={index} className=" my-3 text-sm text-gray-500 normal-case">
-                <div className="h-6 cursor-pointer my-2">
+              <div
+                key={index}
+                className=" my-3 text-sm text-gray-500 normal-case"
+              >
+                <div
+                  className="h-6 cursor-pointer my-2"
+                  onClick={() => onLabelSelected(index)}
+                >
                   <div className="hover:text-gray-400">{label} </div>
                 </div>
               </div>
@@ -73,5 +70,6 @@ const FolderBar: React.FC = () => {
     </React.Fragment>
   );
 };
+
 
 export default FolderBar;

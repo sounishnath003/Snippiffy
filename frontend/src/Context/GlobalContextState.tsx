@@ -24,6 +24,7 @@ export interface IGlobalContextState {
   dispatch: React.Dispatch<IAction>;
   success: string;
   languages: mapp;
+  label: string;
 }
 
 export const initialState: IGlobalContextState = {
@@ -31,6 +32,7 @@ export const initialState: IGlobalContextState = {
   labels: [],
   files: [],
   snippet: "",
+  label: "",
   error: "",
   success: "",
   dispatch: (value: IAction) => {},
