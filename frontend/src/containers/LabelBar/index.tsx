@@ -18,7 +18,7 @@ const FolderBar: React.FC = () => {
     <React.Fragment>
       <aside
         className="uppercase p-3 inline-flex min-h-screen tracking-wide overflow-y-auto"
-        style={{ backgroundColor: `#010129`, color: `#fff` }}
+        style={{ backgroundColor: `rgb(1 1 33)`, color: `#fff` }}
       >
         <div className="w-full">
           <div className="flex justify-between border-b border-gray-600">
@@ -42,7 +42,7 @@ const FolderBar: React.FC = () => {
                   className="h-6 cursor-pointer my-2"
                   onClick={() => onLabelSelected(index)}
                 >
-                  <div className="hover:text-gray-400">{label} </div>
+                  <div className="hover:text-gray-300">{label} </div>
                 </div>
               </div>
             ))}
@@ -70,6 +70,5 @@ const FolderBar: React.FC = () => {
     </React.Fragment>
   );
 };
-
 
 export default FolderBar;
