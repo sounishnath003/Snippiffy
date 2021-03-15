@@ -1,4 +1,6 @@
 import React from "react";
+import { LOAD_ALL_LABEL } from "../actions";
+import { globalStateReducer, IAction } from "../Reducer/globalStateReducer";
 
 type mapp = {
   js: string;
@@ -18,6 +20,7 @@ export interface IGlobalContextState {
   files: string[];
   snippet: string;
   error: string;
+  dispatch: React.Dispatch<IAction>;
   success: string;
   languages: mapp;
 }
@@ -28,6 +31,7 @@ export const initialState: IGlobalContextState = {
   snippet: "",
   error: "",
   success: "",
+  dispatch: (value: IAction) => {},
   languages: {
     c: "c",
     cpp: "cpp",
@@ -45,8 +49,19 @@ export const initialState: IGlobalContextState = {
 export const GlobalContext = React.createContext(initialState);
 
 export function GlobalContextProvider({ children }: any) {
+  const [state, dispatch] = React.useReducer(globalStateReducer, initialState);
+
+  React.useEffect(() => {
+    const mk = async function() {
+      const rawResp = await fetch('/labels');
+      const data = await rawResp.json();
+      dispatch({type: LOAD_ALL_LABEL, payload: {data}})
+    }
+    mk();
+  }, [])
+
   return (
-    <GlobalContext.Provider value={initialState}>
+    <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}
     </GlobalContext.Provider>
   );

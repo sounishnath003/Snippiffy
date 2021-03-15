@@ -1,4 +1,4 @@
-import LabelBar from "./LabelBar";
+import FolderBar from "./LabelBar";
 import SnippetBar from "./SnippetBar";
 
-export { LabelBar, SnippetBar };
+export { FolderBar, SnippetBar };

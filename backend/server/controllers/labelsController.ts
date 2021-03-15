@@ -5,7 +5,7 @@ import {
   FORBIDDEN,
   INTERNAL_ERROR,
   NOT_FOUND,
-  OK,
+  OK
 } from "../utility";
 
 const router = Router();
@@ -39,6 +39,8 @@ router.get("/:name", async (req, res, next) => {
 // * [POST]: Create a new label
 router.post("/create", async (req, res) => {
   const { label } = req.body;
+  console.log({label});
+  
   const location = `${baseDirectory}/${label}`;
   if (existsSync(location)) {
     return res

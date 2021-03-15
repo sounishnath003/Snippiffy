@@ -1,22 +1,26 @@
 import React from "react";
+import { ADD_NEW_LABEL } from "../../actions";
 import { AddIcon } from "../../assets/icons";
 import { Modal } from "../../components";
 import { GlobalContext } from "../../Context/GlobalContextState";
 
-const LabelBar: React.FC = () => {
+const FolderBar: React.FC = () => {
   const [searchText, setSearchText] = React.useState<string>("");
   const [openModal, setOpenModal] = React.useState<boolean>(false);
 
-  const { labels } = React.useContext(GlobalContext);
+  const { labels, dispatch} = React.useContext(GlobalContext);
+  
 
   async function addNewLabelFunc(data: string) {
-    const payload = { label: data };
     const rawResp = await fetch("/labels/create", {
       method: "POST",
-      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({label: data}),
     });
     const resp = await rawResp.json();
-    console.log({ resp });
+    if (resp.success) {
+      dispatch({type: ADD_NEW_LABEL, payload: data})
+    }
   }
 
   return (
@@ -70,4 +74,4 @@ const LabelBar: React.FC = () => {
   );
 };
 
-export default LabelBar;
+export default FolderBar;

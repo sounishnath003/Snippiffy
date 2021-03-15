@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { GridView, Header } from "./components";
-import { LabelBar, SnippetBar } from "./containers";
+import { FolderBar, SnippetBar } from "./containers";
 import { GlobalContextProvider } from "./Context/GlobalContextState";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <GlobalContextProvider>
         <GridView>
-          <LabelBar />
+          <FolderBar />
           <SnippetBar />
         </GridView>
       </GlobalContextProvider>
