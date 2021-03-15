@@ -2,6 +2,10 @@
 
 This app is highly influenced reactiveX packed **snipiffy magemnent tool**. Which helps developers not only have the sneak peak of the snippets they have loaded; but also modify in browser using the **VSCODE browser editor** plugin. 💖
 
+## Intial Look
+![image](https://user-images.githubusercontent.com/40270033/111206251-28e8fb00-85ee-11eb-863e-409d38896549.png)
+
+
 ## Project Structure 🙌
 
 - Backend
