@@ -1,5 +1,5 @@
 {
-  "name": "snipiffy",
+  "name": "snippiffy",
   "description": "personalized snippet management tool",
   "private": true,
   "version": "1.0.0",
@@ -9,7 +9,7 @@
     "start": "concurrently -m=3 \"yarn start:backend\" \"&&\" \"yarn start:frontend\"",
     "dev": "concurrently -m=3 \"yarn start:backend\" \"&&\" \"yarn start:frontend\"",
     "start:frontend": "cd frontend && yarn start",
-    "start:backend": "cd backend && yarn start"
+    "start:backend": "cd backend && yarn dev"
   },
   "repository": {
     "type": "git"

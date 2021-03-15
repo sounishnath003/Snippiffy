@@ -18,7 +18,7 @@ const FolderBar: React.FC = () => {
     <React.Fragment>
       <aside
         className="uppercase p-3 inline-flex min-h-screen tracking-wide overflow-y-auto"
-        style={{ backgroundColor: `#07223a`, color: `#fff` }}
+        style={{ backgroundColor: `#010129`, color: `#fff` }}
       >
         <div className="w-full">
           <div className="flex justify-between border-b border-gray-600">
