@@ -21,12 +21,14 @@ function SnippetBar() {
           <div>
             <span className="text-sm font-semibold uppercase">
               {" "}
-              Snippets: <span className="text-blue-600">{label}</span>
+              Snippets: <span className="text-blue-700">{label}</span>
             </span>
           </div>
-          <div onClick={() => setOpenModal(true)}>
-            <AddIcon />
-          </div>
+          {label && (
+            <div onClick={() => setOpenModal(true)}>
+              <AddIcon />
+            </div>
+          )}
         </div>
         {label && (
           <>

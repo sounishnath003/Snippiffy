@@ -749,6 +749,7 @@ module.exports = {
     "disabled",
   ],
   variants: {
+    fontFamily: ["hover"],
     accessibility: ["responsive", "focus-within", "focus"],
     alignContent: ["responsive"],
     alignItems: ["responsive"],

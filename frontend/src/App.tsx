@@ -1,10 +1,15 @@
 import React from "react";
 import "./App.css";
 import { AlertBox, GridView, Header } from "./components";
-import { FolderBar, SnippetBar } from "./containers";
-import { GlobalContextProvider } from "./Context/GlobalContextState";
+import { EditorView, FolderBar, SnippetBar } from "./containers";
+import { GlobalContext, GlobalContextProvider } from "./Context/GlobalContextState";
 
 function App() {
+  const {success, error} = React.useContext(GlobalContext);
+  React.useEffect(() => {
+    console.log({ success, error });
+  }, [success, error])
+  
   return (
     <>
       <AlertBox />
@@ -13,6 +18,7 @@ function App() {
         <GridView>
           <FolderBar />
           <SnippetBar />
+          <EditorView />
         </GridView>
       </GlobalContextProvider>
     </>

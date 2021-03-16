@@ -23,7 +23,7 @@ const FolderBar: React.FC = () => {
         <div className="w-full">
           <div className="flex justify-between border-b border-gray-600">
             <div>
-              <span className="text-sm ">Folders</span>
+              <span className="text-xs font-semibold">Folders</span>
             </div>
 
             <div onClick={() => setOpenModal(true)}>

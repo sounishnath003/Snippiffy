@@ -1,5 +1,5 @@
 import React from "react";
-import { ADD_NEW_LABEL, ON_LABEL_SELECTED } from "../../../actions";
+import { ADD_NEW_LABEL, ON_LABEL_SELECTED, SET_ERROR } from "../../../actions";
 import { GlobalContext } from "../../../Context/GlobalContextState";
 
 type IFolderHook = {
@@ -19,14 +19,19 @@ export function useFolderBarHook(): IFolderHook {
   const { labels, dispatch } = React.useContext(GlobalContext);
 
   async function addNewLabelFunc(data: string) {
-    const rawResp = await fetch("/labels/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ label: data }),
-    });
-    const resp = await rawResp.json();
-    if (resp.success) {
-      dispatch({ type: ADD_NEW_LABEL, payload: data });
+    try {
+      const rawResp = await fetch("/labels/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label: data }),
+      });
+      const resp = await rawResp.json();
+      if (resp.success === false) {throw new Error();}
+      if (resp.success) {
+        dispatch({ type: ADD_NEW_LABEL, payload: data });
+      }
+    } catch (err) {
+      dispatch({ type: SET_ERROR, payload: { error: `server not working` } });
     }
   }
 
