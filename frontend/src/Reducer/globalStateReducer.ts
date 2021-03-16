@@ -64,6 +64,7 @@ export function globalStateReducer(
     case ADD_NEW_LABEL:
       return {
         ...state,
+        success: `${action.payload} has been added`,
         labels: [...state.labels, action.payload],
       };
 

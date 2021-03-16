@@ -7,7 +7,7 @@ import { GlobalContextProvider } from "./Context/GlobalContextState";
 function App() {
   return (
     <>
-      <AlertBox/>
+      <AlertBox />
       <Header />
       <GlobalContextProvider>
         <GridView>

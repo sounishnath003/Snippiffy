@@ -4,6 +4,10 @@ import { GlobalContext } from "../../Context/GlobalContextState";
 function AlertBox() {
   const { error, success } = React.useContext(GlobalContext);
 
+  React.useEffect(() => {
+    alert(success);
+  }, [error, success])
+
   return (
     <React.Fragment>
       {error && (

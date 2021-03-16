@@ -60,7 +60,7 @@ function SnippetBar() {
 
         {/* if no label is selected */}
         {!label && (
-          <div className="text-sm my-10 text-center">Select a Label</div>
+          <div className="text-sm my-10 text-center">Select a Folder</div>
         )}
       </aside>
 
