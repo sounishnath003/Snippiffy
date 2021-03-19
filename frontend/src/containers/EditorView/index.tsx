@@ -1,4 +1,3 @@
-import Editor from "@monaco-editor/react";
 import React from "react";
 import { EditIcon, TrashIcon } from "../../assets/icons";
 import { GlobalContext } from "../../Context/GlobalContextState";
@@ -45,13 +44,8 @@ function EditorView() {
             </div>
           </div>
         </div>
-        <div className="my-3-">
+        <div className="my-3">
           EditorView Component
-          <Editor
-            height="100%"
-            language="typescript"
-            options={{ minimap: false }}
-          />
           <div></div>
         </div>
       </div>
