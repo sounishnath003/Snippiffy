@@ -26,7 +26,9 @@ export function useFolderBarHook(): IFolderHook {
         body: JSON.stringify({ label: data }),
       });
       const resp = await rawResp.json();
-      if (resp.success === false) {throw new Error();}
+      if (resp.success === false) {
+        throw new Error();
+      }
       if (resp.success) {
         dispatch({ type: ADD_NEW_LABEL, payload: data });
       }

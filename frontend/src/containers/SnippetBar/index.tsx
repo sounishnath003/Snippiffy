@@ -1,4 +1,5 @@
 import React from "react";
+import { OPEN_SNIPPET_FILE } from "../../actions";
 import { AddIcon } from "../../assets/icons";
 import { Modal } from "../../components";
 import { useSnipperBarHook } from "./hooks";
@@ -12,6 +13,7 @@ function SnippetBar() {
     setOpenModal,
     setSearchText,
     label,
+    dispatch,
   } = useSnipperBarHook();
 
   return (
@@ -39,7 +41,13 @@ function SnippetBar() {
                   .filter((data) => data.toLowerCase().includes(searchText))
                   .map((file, index) => (
                     <div
-                      className="text-left px-2 py-1 rounded-md hover:text-gray-700 my-2 hover:bg-gray-200 cursor-pointer"
+                      onClick={() =>
+                        dispatch({
+                          type: OPEN_SNIPPET_FILE,
+                          payload: { data: file },
+                        })
+                      }
+                      className="text-left px-2 py-1 rounded-md hover:text-blue-800  my-2 hover:bg-gray-200 cursor-pointer"
                       key={index}
                     >
                       {" "}

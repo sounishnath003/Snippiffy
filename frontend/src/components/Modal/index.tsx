@@ -72,7 +72,7 @@ function Modal({ title, closeBind, saveBind, type }: IProps) {
                         {" "}
                         <select
                           name="chooseLanguages"
-                          className="w-full"
+                          className="w-32 "
                           value={selectLang}
                           onChange={(e) => setSelectlang(e.target.value)}
                         >

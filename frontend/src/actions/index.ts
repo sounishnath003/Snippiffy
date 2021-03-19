@@ -6,3 +6,4 @@ export const DISMISS_ERROR = "[SET_LOADING] dismiss error";
 export const ADD_NEW_LABEL = "[ADD_NEW_LABEL] add new label";
 export const CREATE_SNIPPET_FILE = "[CREATE_SNIPPET_FILE] create a file in folder";
 export const ON_LABEL_SELECTED = "[ON_LABEL_SELECTED] on label selected";
+export const OPEN_SNIPPET_FILE = "[OPEN_SNIPPET_FILE] open snippet file";

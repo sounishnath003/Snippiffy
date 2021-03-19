@@ -4,12 +4,13 @@ import {
   DISMISS_ERROR,
   LOAD_ALL_LABEL,
   ON_LABEL_SELECTED,
+  OPEN_SNIPPET_FILE,
   SET_ERROR,
-  SET_LOADING
+  SET_LOADING,
 } from "../actions";
 import {
   IGlobalContextState,
-  initialState
+  initialState,
 } from "../Context/GlobalContextState";
 
 export type IAction = {
@@ -22,6 +23,13 @@ export function globalStateReducer(
   action: IAction
 ): IGlobalContextState {
   switch (action.type) {
+    case OPEN_SNIPPET_FILE:
+      console.log({ file: action.payload.data });
+      return {
+        ...state,
+        file: action.payload.data,
+      };
+
     case CREATE_SNIPPET_FILE:
       return {
         ...state,

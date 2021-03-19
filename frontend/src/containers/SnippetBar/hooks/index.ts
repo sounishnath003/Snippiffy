@@ -1,6 +1,7 @@
 import React from "react";
 import { CREATE_SNIPPET_FILE } from "../../../actions";
 import { GlobalContext } from "../../../Context/GlobalContextState";
+import { IAction } from "../../../Reducer/globalStateReducer";
 
 type IUseSnippetBar = {
   searchText: string;
@@ -10,6 +11,7 @@ type IUseSnippetBar = {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   addNewSnippet: (data_: string) => void;
   files: string[];
+  dispatch: React.Dispatch<IAction>;
 };
 
 export function useSnipperBarHook(): IUseSnippetBar {
@@ -47,6 +49,7 @@ export function useSnipperBarHook(): IUseSnippetBar {
     setOpenModal,
     addNewSnippet,
     files,
-    label
+    label,
+    dispatch,
   };
 }

@@ -3,16 +3,42 @@ import { LOAD_ALL_LABEL, SET_ERROR, SET_LOADING } from "../actions";
 import { globalStateReducer, IAction } from "../Reducer/globalStateReducer";
 
 type mapp = {
+  coffee: string;
+  h: string;
+  bat: string;
+  clj: string;
+  cpp: string;
+  c: string;
+  cs: string;
+  csp: string;
+  dockerfile: string;
+  fs: string;
+  go: string;
+  graphql: string;
+  handlebars: string;
+  html: string;
+  java: string;
   js: string;
   jsx: string;
+  json: string;
+  lua: string;
+  md: string;
+  php: string;
+  ps1: string;
+  pug: string;
+  py: string;
+  r: string;
+  rb: string;
+  rs: string;
+  swift: string;
   ts: string;
   tsx: string;
-  cpp: string;
-  java: string;
-  c: string;
-  html: string;
+  xml: string;
+  yaml: string;
   css: string;
-  py: string;
+  less: string;
+  scss: string;
+  txt: string;
 };
 
 export interface IGlobalContextState {
@@ -25,11 +51,13 @@ export interface IGlobalContextState {
   success: string;
   languages: mapp;
   label: string;
+  file: string | null;
 }
 
 export const initialState: IGlobalContextState = {
   loading: false,
   labels: [],
+  file: null,
   files: [],
   snippet: "",
   label: "",
@@ -37,16 +65,42 @@ export const initialState: IGlobalContextState = {
   success: "",
   dispatch: (value: IAction) => {},
   languages: {
-    c: "c",
+    coffee: "coffeescript",
+    h: "objective-c",
+    bat: "bat",
+    clj: "clojure",
     cpp: "cpp",
-    css: "css",
+    c: "c",
+    cs: "csharp",
+    csp: "csp",
+    dockerfile: "dockerfile",
+    fs: "fsharp",
+    go: "go",
+    graphql: "graphql",
+    handlebars: "handlebars",
     html: "html",
     java: "java",
-    js: "js",
-    jsx: "Javascript React",
+    js: "javascript",
+    jsx: "javascript-react",
+    json: "json",
+    lua: "lua",
+    md: "markdown",
+    php: "php",
+    ps1: "powershell",
+    pug: "pug",
     py: "python",
-    ts: "Typescript",
-    tsx: "Typescript React",
+    r: "r",
+    rb: "ruby",
+    rs: "rust",
+    swift: "swift",
+    ts: "typescript",
+    tsx: "typescript-react",
+    xml: "xml",
+    yaml: "yaml",
+    css: "css",
+    less: "less",
+    scss: "scss",
+    txt: "text",
   },
 };
 
