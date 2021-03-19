@@ -8,7 +8,7 @@
   "scripts": {
     "start": "concurrently -m=3 \"yarn start:backend\" \"&&\" \"yarn start:frontend\"",
     "dev": "concurrently -m=3 \"yarn start:backend\" \"&&\" \"yarn start:frontend\"",
-    "start:frontend": "cd frontend && yarn start",
+    "start:frontend": "cd frontend && yarn dev",
     "start:backend": "cd backend && yarn dev"
   },
   "repository": {
@@ -17,7 +17,5 @@
   "devDependencies": {
     "concurrently": "^6.0.0"
   },
-  "dependencies": {
-    "@monaco-editor/react": "^4.1.0"
-  }
+  "dependencies": {}
 }

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const AddIcon = ({ size = 18, color = "#000" }) => (
   <svg
     className="text-sm opacity-0 hover:opacity-100 cursor-pointer"
