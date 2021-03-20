@@ -20,7 +20,7 @@ export function useFolderBarHook(): IFolderHook {
 
   async function addNewLabelFunc(data: string) {
     try {
-      const rawResp = await fetch("/labels/create", {
+      const rawResp = await fetch("api/labels/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ label: data }),
@@ -39,7 +39,7 @@ export function useFolderBarHook(): IFolderHook {
 
   async function onLabelSelected(index: number) {
     const selectedLabel = labels[index];
-    const data = await (await fetch(`/labels/${selectedLabel}`)).json();
+    const data = await (await fetch(`api/labels/${selectedLabel}`)).json();
 
     dispatch({
       type: ON_LABEL_SELECTED,

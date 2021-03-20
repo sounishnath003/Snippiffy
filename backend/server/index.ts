@@ -9,8 +9,8 @@ const app = express();
 export function serverStart() {
   serverConfig();
   try {
-    app.use("/labels", LabelsController);
-    app.use("/snippets", SnippetsController);
+    app.use("/api/labels", LabelsController);
+    app.use("/api/snippets", SnippetsController);
 
     app.listen(PORT, () =>
       console.log(`server is running on http://localhost:${PORT}`)

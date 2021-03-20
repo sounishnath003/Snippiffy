@@ -2,8 +2,14 @@ import React from "react";
 import { EditIcon, TrashIcon } from "../../assets/icons";
 import { GlobalContext } from "../../Context/GlobalContextState";
 
+import Editor from "@monaco-editor/react";
+
 function EditorView() {
-  const { file } = React.useContext(GlobalContext);
+  const { file, languages } = React.useContext(GlobalContext);
+
+  function getLang(): string {
+    return languages[file.split(".").pop()];
+  }
 
   if (file === null) {
     return (
@@ -44,9 +50,8 @@ function EditorView() {
             </div>
           </div>
         </div>
-        <div className="my-3">
-          EditorView Component
-          <div></div>
+        <div className="my-3 h-screen">
+          <Editor height={"100%"} key={file} language={getLang()} />
         </div>
       </div>
     </React.Fragment>

@@ -113,7 +113,7 @@ export function GlobalContextProvider({ children }: any) {
     const mk = async function () {
       try {
         dispatch({ type: SET_LOADING, payload: {} });
-        const rawResp = await fetch("/labels");
+        const rawResp = await fetch("/api/labels");
         const data = await rawResp.json();
         dispatch({ type: LOAD_ALL_LABEL, payload: { data } });
       } catch (error) {
