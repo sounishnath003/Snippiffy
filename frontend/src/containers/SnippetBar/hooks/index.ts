@@ -25,7 +25,7 @@ export function useSnipperBarHook(): IUseSnippetBar {
 
     const mk = async function () {
       const data = await (
-        await fetch(`/snippets/create`, {
+        await fetch(`/api/snippets/create`, {
           method: "POST",
           headers: { "Content-Type": `application/json` },
           body: JSON.stringify(payload),

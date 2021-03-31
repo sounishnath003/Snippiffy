@@ -4,12 +4,27 @@ import { EditIcon, SaveIcon, TrashIcon } from "../../assets/icons";
 import { GlobalContext } from "../../Context/GlobalContextState";
 
 function EditorView() {
-  const { file, languages } = React.useContext(GlobalContext);
-  const [canEdit, setCanEdit] = React.useState<boolean>(true);
-  const [fileInput, setFileInput] = React.useState<string>(file);
+  const { snippet, file, languages } = React.useContext(GlobalContext);
+  const [canEditFilename, setCanEditFilename] = React.useState<boolean>(false);
+  const [canEditCode, setCanEditCode] = React.useState<boolean>(false);
+  const [fileInput, setFileInput] = React.useState<string>("");
+  const [code, setCode] = React.useState<string>("");
+
+  React.useEffect(() => {
+    setFileInput(file);
+  }, [file, snippet]);
 
   function getLang(): string {
     return languages[file.split(".").pop()];
+  }
+
+  const options = {
+    readOnly: !canEditCode,
+  };
+
+  // @save(): to save code user updated
+  function save() {
+    console.log({code});
   }
 
   if (file === null) {
@@ -28,28 +43,31 @@ function EditorView() {
         <div className="px-3 h-12 rounded space-x-4 border flex items-center content-center justify-evenly">
           <div
             className="cursor-pointer border-r p-1"
-            onClick={() => setCanEdit((e) => !e)}
+            onClick={() => setCanEditFilename((e) => !e)}
           >
             {" "}
-            {canEdit ? (
-              <EditIcon size={20} color="blue" />
-            ) : (
+            {canEditFilename ? (
               <SaveIcon size={20} color={"red"} />
+            ) : (
+              <EditIcon size={20} color="blue" />
             )}
           </div>
           <div className="w-2/3">
             <input
               type="text"
               className="w-full text-gray-700 font-mono font-semibold outline-none focus:ring-2 focus:ring-blue-50 bg-transparent h-8 m-auto"
-              value={file}
+              value={fileInput || ""}
               onChange={(e) => setFileInput(e.target.value)}
-              disabled={canEdit}
+              disabled={!canEditFilename}
             />
           </div>
           <div className="w-1/3">
             <div className="flex justify-evenly items-center content-center">
-              <div className="rounded-md bg-blue-100 hover:bg-blue-200 px-4 py-1">
-                <button>Edit</button>
+              <div
+                onClick={() => setCanEditCode((e) => !e)}
+                className="rounded-md text-sm bg-blue-100 hover:bg-blue-200 px-4 py-1"
+              >
+                {canEditCode ? <button onClick={save} >Save</button> : <button>Edit</button>}
               </div>
               <div className="rounded-md bg-red-100 hover:bg-red-300 px-4 py-1">
                 <button>
@@ -60,7 +78,14 @@ function EditorView() {
           </div>
         </div>
         <div className="my-3 h-screen">
-          <Editor height={"100%"} key={file} language={getLang()} />
+          <Editor
+            height={"100%"}
+            key={file}
+            value={code}
+            onChange={(e) => setCode(e)}
+            language={getLang()}
+            options={options}
+          />
         </div>
       </div>
     </React.Fragment>
